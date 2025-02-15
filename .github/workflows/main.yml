@@ -34,10 +34,10 @@ jobs:
 
       - name: Run Playwright BDD Tests
         run: npm run test
-        # env:
+        env:
         #   BROWSER: chrome
         #   BASEURL: "https://your-app-url.com"
-        #   HEADLESS: "true"
+            HEADLESS: "true"
 
       - name: Generate Test Report
         run: npm run posttest
