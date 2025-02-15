@@ -1,0 +1,5 @@
+info : 2025-02-15 08:41:45 : 	User navigated to the login page
+info : 2025-02-15 08:41:45 : 	user entered username
+info : 2025-02-15 08:41:45 : 	user entered password
+info : 2025-02-15 08:41:45 : 	user clicked login button
+info : 2025-02-15 08:41:47 : 	product contains expected product Test.allTheThings() T-Shirt (Red)
