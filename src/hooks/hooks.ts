@@ -30,7 +30,13 @@ Before(async function ({ pickle }) {
   }else{
     console.log("❌ Not using session : Login test");
   }
-
+  await context.tracing.start({
+    name : scenarioName,
+    title : pickle.name,
+    sources: true,
+    screenshots:true,
+    snapshots:true
+  })
   const page = await context.newPage();
   fixture.page = page;
   fixture.logger = createLogger(options(scenarioName));
@@ -40,6 +46,8 @@ After(async function ({ pickle }) {
   const screenshotPath = `./test-result/screenshots/${pickle.name}.png`;
   const img = await fixture.page.screenshot({ path: screenshotPath, type: "png" });
   this.attach(img, "image/png");
+  const path = `/test-result/trace/${pickle.id}.zip`;
+  await context.tracing.stop({ path: path });
 
   const videoPath = await fixture.page.video()?.path();
   await fixture.page.close();
@@ -50,6 +58,14 @@ After(async function ({ pickle }) {
   } else {
     console.log("No video found for this test.");
   }
+
+  if(path){
+    const traceFileLink = `<a href="https://trace.playwright.dev/">Open ${path} target="_blank">Open Trace File</a>`
+    await this.attach(`Trace file: ${traceFileLink}`, 'text/html');
+  }else{
+    console.log("No trace found for this test.")
+  }
+ 
 });
 
 AfterAll(async function () {
