@@ -2,6 +2,7 @@ import { Browser, BrowserContext } from "@playwright/test";
 import fs from "fs-extra";
 import { fixture } from "../../hooks/fixture";
 import LoginPage from "../../pages/loginPage";
+import PlaywrightWrapper from "../../wrapper/playwrightWrappers";
 
 const SESSION_FILE_PATH = "src/helper/userSession/sessions/storageState.json";
 
@@ -36,6 +37,7 @@ export async function loginWithSessionStorage(browser: Browser, context: Browser
     await loginPage.clickLoginButton();
     fixture.logger.info("User clicked login button");
 
+    await loginPage.waitForNavigationComplete();
     // ✅ Save session storage
     await context.storageState({ path: SESSION_FILE_PATH });
     console.log("✅ Session stored at:", SESSION_FILE_PATH);

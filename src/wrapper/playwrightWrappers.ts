@@ -48,8 +48,8 @@ export default class PlaywrightWrapper{
         await this.page.waitForLoadState('domcontentloaded');
     }
 
-    async waitForTimeout(){
-        await this.page.waitForTimeout(2000);
+    async waitForTimeout(timeout:number){
+        await this.page.waitForTimeout(timeout);
     }
 
 }

@@ -13,6 +13,10 @@ export default class ProductPage{
         item_Names:'div.inventory_item_name',
     }
 
+    async navigateToProductPage(){
+        await this.base.goto('https://www.saucedemo.com/v1/inventory.html');
+     }
+
     async getProductPageTitle():Promise<string >{
         return await this.base.waitAndGetText(this.Elements.title_Page);
     }

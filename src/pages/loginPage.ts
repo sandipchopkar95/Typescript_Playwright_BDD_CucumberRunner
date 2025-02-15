@@ -34,6 +34,10 @@ export default class LoginPage{
         await this.base.waitTillLoad();
     }
 
+    async waitForNavigationComplete(){
+        await this.base.waitForTimeout(2000);
+    }
+
     async getInvaldCredentialError(){
         return await this.base.waitAndGetText(this.Elements.login_error);
     }

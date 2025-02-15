@@ -12,7 +12,7 @@ module.exports = {
             "./src/hooks/hooks.ts"
         ],
         requireModule: ["ts-node/register"],
-        parallel: 2,
+        parallel: 0,
         format: [
             "progress-bar",
             "html:test-result/cucumber-report.html",
@@ -30,7 +30,7 @@ module.exports = {
             "./src/hooks/hooks.ts"
         ],
         requireModule: ["ts-node/register"],
-        parallel: 1,
+        parallel: 0,
         format: [
             "progress-bar",
             "html:test-result/cucumber-report.html",

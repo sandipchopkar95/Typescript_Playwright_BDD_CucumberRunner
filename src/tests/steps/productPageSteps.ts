@@ -26,3 +26,8 @@ Then('The search list contains {string}', async function (expectedData: string) 
 
     fixture.logger.info(`Search list contains: ${expectedData}`);
 });
+
+Given('User should be on product page', async function () {
+    productPage = new ProductPage(fixture.page);
+    await productPage.navigateToProductPage();
+ });

@@ -49,16 +49,3 @@ Then('User should receive an error message as {string}', async function (expecte
    fixture.logger.info(`User received an error message: ${expected_data}`);
 });
 
-// Pre-login step
-Given('User should be on product page', async function () {
-   loginPage = new LoginPage(fixture.page);
-   productPage = new ProductPage(fixture.page);
-   await loginPage.navigateToLoginPage();
-   fixture.logger.info('User navigated to the login page');
-   await loginPage.enterUsername('standard_user');
-   fixture.logger.info('User entered username');
-   await loginPage.enterPassword('secret_sauce');
-   fixture.logger.info('User entered password');
-   await loginPage.clickLoginButton();
-   fixture.logger.info('User clicked login button');
-});
