@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-results
-          path: test-result/
+          path: test-result
 
       - name: Rerun Failed Tests (if any)
         if: failure()
