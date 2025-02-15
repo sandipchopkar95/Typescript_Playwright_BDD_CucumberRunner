@@ -4,8 +4,10 @@ import { pageFixture } from '../../hooks/pageFixtures';
 
 setDefaultTimeout(60000);
 // fill search data
-Given('User enters search text in search bar {string}', async function (searchdata:string) {
-   await pageFixture.page.fill('.oxd-main-menu-search input',searchdata,{timeout:3000});
+Given('user should see the items in the list {string}', async function (expectedItem:string) {
+   await pageFixture.page.waitForTimeout(2000);
+   const itemList=await pageFixture.page.locator('.inventory_item_name').allTextContents();
+   expect(itemList).toContain(expectedItem);
 });
 
 //check search list
