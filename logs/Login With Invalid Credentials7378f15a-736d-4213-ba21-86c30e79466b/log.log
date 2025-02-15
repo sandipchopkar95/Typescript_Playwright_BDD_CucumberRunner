@@ -1,0 +1,5 @@
+info : 2025-02-15 16:49:18 : 	User navigated to the login page
+info : 2025-02-15 16:49:18 : 	User entered username
+info : 2025-02-15 16:49:18 : 	User entered password
+info : 2025-02-15 16:49:18 : 	User clicked login button
+info : 2025-02-15 16:49:18 : 	User received an error message: Username and password do not match any user in this service
