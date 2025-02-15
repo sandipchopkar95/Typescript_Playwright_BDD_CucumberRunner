@@ -3,7 +3,7 @@ Feature: User Authentication Test with scenario
   Background:
     Given User should be on login page
 
-  Scenario Outline: User login with valid credentials
+  Scenario Outline: Login With Valid Credentials
     And User enters username as "<username>"
     And User enters password as "<password>"
     And User clicks Login Button
@@ -13,17 +13,18 @@ Feature: User Authentication Test with scenario
       | username      | password     | expectedStatus |
       | standard_user | secret_sauce | Products       |
 
-  Scenario Outline: User can see products
-    And User enters username as "standard_user"
-    And User enters password as "secret_sauce"
+  Scenario Outline: Login With Invalid Credentials
+    And User enters username as "<username>"
+    And User enters password as "<password>"
     And User clicks Login Button
-    And user should see the items in the list "<expectedItems>"
+    Then User should receive an error message as "<expectedStatus>"
 
     Examples:
-      | expectedItems                     |
-      | Sauce Labs Backpack               |
-      | Sauce Labs Bike Light             |
-      | Sauce Labs Bolt T-Shirt           |
-      | Sauce Labs Fleece Jacket          |
-      | Sauce Labs Onesie                 |
-      | Test.allTheThings() T-Shirt (Red) |
+      | username        | password      | expectedStatus                                              |
+      | locked_out_user | secret_sauce  | Sorry, this user has been locked out.                       |
+      | standard_user   | secret_sauce1 | Username and password do not match any user in this service |
+      |                 |               | Username is required                                        |
+      | standard_user   |               | Password is required                                        |
+      |                 | secret_sauce  | Username is required                                        |
+
+ 
