@@ -1,0 +1,78 @@
+name: Playwright BDD Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual trigger
+
+permissions:
+  contents: write  # Needed for GitHub Pages deployment
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright BDD Tests
+        run: npm run test
+        env:
+          BROWSER: chrome
+          BASEURL: "https://your-app-url.com"
+          HEADLESS: "true"
+
+      - name: Generate Test Report
+        run: npm run posttest
+
+      - name: Upload Test Results as Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: test-result/
+
+      - name: Rerun Failed Tests (if any)
+        if: failure()
+        run: npm run test:failed
+
+  deploy:
+    needs: test  # Run only after the test job
+    runs-on: ubuntu-latest
+    if: always()  # Deploy even if tests fail
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Test Results
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-results
+          path: public/
+
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Deploy Test Results to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public/
