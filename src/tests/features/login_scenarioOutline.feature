@@ -3,6 +3,7 @@ Feature: User Authentication Test with scenario
   Background:
     Given User should be on login page
 
+@positive @login
   Scenario Outline: Login With Valid Credentials
     And User enters username as "<username>"
     And User enters password as "<password>"
@@ -13,6 +14,7 @@ Feature: User Authentication Test with scenario
       | username      | password     | expectedStatus |
       | standard_user | secret_sauce | Products       |
 
+@negative @login
   Scenario Outline: Login With Invalid Credentials
     And User enters username as "<username>"
     And User enters password as "<password>"

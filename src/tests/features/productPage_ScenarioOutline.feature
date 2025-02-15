@@ -3,6 +3,7 @@ Feature: Product page
 Background:
     Given User should be on product page
 
+@positive
  Scenario Outline: User can see products
     And user should see the items in the list "<expectedItems>"
 
