@@ -34,10 +34,10 @@ jobs:
 
       - name: Run Playwright BDD Tests
         run: npm run test
-        env:
-          BROWSER: chrome
-          BASEURL: "https://your-app-url.com"
-          HEADLESS: "true"
+        # env:
+        #   BROWSER: chrome
+        #   BASEURL: "https://your-app-url.com"
+        #   HEADLESS: "true"
 
       - name: Generate Test Report
         run: npm run posttest
@@ -67,6 +67,9 @@ jobs:
         with:
           name: playwright-results
           path: public/
+
+      - name: Rename Cucumber Report for GitHub Pages
+        run: mv public/cucumber-report.html public/index.html
 
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v4
