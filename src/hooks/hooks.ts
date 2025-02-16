@@ -46,7 +46,7 @@ After(async function ({ pickle }) {
   const screenshotPath = `./test-result/screenshots/${pickle.name}.png`;
   const img = await fixture.page.screenshot({ path: screenshotPath, type: "png" });
   this.attach(img, "image/png");
-  const path = `/test-result/trace/${pickle.id}.zip`;
+  const path = `test-result/trace/${pickle.id}.zip`;
   await context.tracing.stop({ path: path });
 
   const videoPath = await fixture.page.video()?.path();
