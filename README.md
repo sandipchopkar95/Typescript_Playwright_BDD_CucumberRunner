@@ -18,6 +18,44 @@ This repository contains end-to-end (E2E) tests using **Playwright**, **Cucumber
 
 ---
 
+## 📁 Project Structure
+
+```
+project-root/
+.github/workflows/
+  └── main.yml               # GitHub Actions workflow
+
+config/
+  └── cucumber.js            # Cucumber configuration
+
+src/
+  ├── helper/                # Browser and utility helpers
+  ├── browsers/              # Browser settings
+  ├── env/                   # Environment configurations
+  ├── types/                 # Global types and interfaces
+  ├── userSession/           # Session management logic
+  ├── hooks/                 # Cucumber hooks
+  ├── pages/                 # Page Object Models
+  ├── reporter/              # Reporters (custom HTML, etc.)
+  ├── tests/                 # Test setup and support files
+  ├── features/              # .feature files
+  ├── steps/                 # Step definition files
+  ├── utils/                 # Reusable utility functions
+  └── wrapper/
+      └── playwrightWrappers.ts
+
+.gitignore
+@rerun.txt
+README.md
+cucumber
+package.json
+package-lock.json
+tsconfig.json
+
+```
+
+---
+
 ## Installation
 
 **Clone the repo**
@@ -141,3 +179,11 @@ Test results including screenshots and HTML reports can be found in the `test-re
 ```bash
 npx playwright show-report
 ```
+
+---
+
+## CI/CD with GitHub Actions
+
+This project includes a GitHub Actions workflow to automatically run tests on push, pull requests, and manual dispatch and deploy result to accessible url
+
+---
