@@ -20,15 +20,14 @@ cd playwright_BDD
 
 npm install
 
-#Running Tests
+# Running Tests
 **All tests**
-
 npx cucumber-js
+
 **Specific feature**
-
 npx cucumber-js features/path/to/your.feature
-**With tags**
 
+**With tags**
 npx cucumber-js --tags "@smoke"
 
 # Writing Tests
