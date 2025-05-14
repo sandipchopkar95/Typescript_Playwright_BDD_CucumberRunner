@@ -1,46 +1,77 @@
-# Description
 
-This repository contains end-to-end (E2E) tests using Playwright, Cucumber, and TypeScript. It follows the Behavior-Driven Development (BDD) approach with Gherkin syntax.
+# Playwright BDD Project
 
-# Features
+## Description
+
+This repository contains end-to-end (E2E) tests using **Playwright**, **Cucumber**, and **TypeScript**. It follows the Behavior-Driven Development (BDD) approach using Gherkin syntax for writing human-readable test cases.
+
+---
+
+## Features
 
 - BDD-style E2E tests with Cucumber
 - TypeScript support
 - Playwright for fast, reliable browser automation
 - Gherkin for writing human-readable scenarios
--  Screenshots and traces on failure
+- Screenshots and traces on failure
+- HTML reports for result analysis
 
-# Installation
+---
+
+## Installation
+
 **Clone the repo**
 
+```bash
 git clone https://github.com/sandipchopkar95/playwright_BDD.git
 cd playwright_BDD
+```
 
 **Install dependencies**
 
+```bash
 npm install
+```
 
-# Running Tests
-**All tests**
+---
+
+## Running Tests
+
+**Run all tests**
+
+```bash
 npx cucumber-js
+```
 
-**Specific feature**
+**Run specific feature**
+
+```bash
 npx cucumber-js features/path/to/your.feature
+```
 
-**With tags**
+**Run with tags**
+
+```bash
 npx cucumber-js --tags "@smoke"
+```
 
-# Writing Tests
-**Feature File (.feature)**
+---
 
+## Writing Tests
+
+**Feature File (`.feature`)**
+
+```gherkin
 Feature: Login
   Scenario: Valid user logs in
     Given the user navigates to the login page
     When the user enters valid credentials
     Then the user should see the dashboard
-    
-**Step Definitions (.ts)**
+```
 
+**Step Definitions (`.ts`)**
+
+```ts
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 
@@ -57,38 +88,56 @@ When('the user enters valid credentials', async function () {
 Then('the user should see the dashboard', async function () {
   await expect(this.page.locator('#dashboard')).toBeVisible();
 });
+```
 
-**cucumber.ts**
+**`cucumber.ts` Example**
 
+```ts
 import { runCucumber } from '@cucumber/cucumber/api';
+
 runCucumber('features/**/*.feature', {
   require: ['src/tests/**/*.ts'],
   parallel: 2,
   format: ['html:test-results/cucumber-report.html', 'summary'],
 });
+```
 
+---
 
-# Useful Scripts
+## Useful Scripts
+
 **Run tests**
 
+```bash
 npm test
+```
 
 **Lint code**
 
+```bash
 npm run lint
+```
 
 **Compile TypeScript**
 
+```bash
 npm run build
+```
 
 **Clean compiled files**
 
+```bash
 npm run clean
+```
 
-# Reports
-Test results including screenshots and HTML reports can be found in the test-results/ folder.
+---
 
-To open the Playwright HTML report:
+## Reports
 
+Test results including screenshots and HTML reports can be found in the `test-results/` folder.
+
+**To open Playwright HTML report:**
+
+```bash
 npx playwright show-report
-
+```
