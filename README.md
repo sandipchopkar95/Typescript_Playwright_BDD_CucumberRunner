@@ -1,0 +1,95 @@
+# Description
+
+This repository contains end-to-end (E2E) tests using Playwright, Cucumber, and TypeScript. It follows the Behavior-Driven Development (BDD) approach with Gherkin syntax.
+
+# Features
+
+- BDD-style E2E tests with Cucumber
+- TypeScript support
+- Playwright for fast, reliable browser automation
+- Gherkin for writing human-readable scenarios
+-  Screenshots and traces on failure
+
+# Installation
+**Clone the repo**
+
+git clone https://github.com/sandipchopkar95/playwright_BDD.git
+cd playwright_BDD
+
+**Install dependencies**
+
+npm install
+
+#Running Tests
+**All tests**
+
+npx cucumber-js
+**Specific feature**
+
+npx cucumber-js features/path/to/your.feature
+**With tags**
+
+npx cucumber-js --tags "@smoke"
+
+# Writing Tests
+**Feature File (.feature)**
+
+Feature: Login
+  Scenario: Valid user logs in
+    Given the user navigates to the login page
+    When the user enters valid credentials
+    Then the user should see the dashboard
+    
+**Step Definitions (.ts)**
+
+import { Given, When, Then } from '@cucumber/cucumber';
+import { expect } from '@playwright/test';
+
+Given('the user navigates to the login page', async function () {
+  await this.page.goto('https://example.com/login');
+});
+
+When('the user enters valid credentials', async function () {
+  await this.page.fill('#username', 'user');
+  await this.page.fill('#password', 'pass');
+  await this.page.click('#submit');
+});
+
+Then('the user should see the dashboard', async function () {
+  await expect(this.page.locator('#dashboard')).toBeVisible();
+});
+
+**cucumber.ts**
+
+import { runCucumber } from '@cucumber/cucumber/api';
+runCucumber('features/**/*.feature', {
+  require: ['src/tests/**/*.ts'],
+  parallel: 2,
+  format: ['html:test-results/cucumber-report.html', 'summary'],
+});
+
+
+# Useful Scripts
+**Run tests**
+
+npm test
+
+**Lint code**
+
+npm run lint
+
+**Compile TypeScript**
+
+npm run build
+
+**Clean compiled files**
+
+npm run clean
+
+# Reports
+Test results including screenshots and HTML reports can be found in the test-results/ folder.
+
+To open the Playwright HTML report:
+
+npx playwright show-report
+
