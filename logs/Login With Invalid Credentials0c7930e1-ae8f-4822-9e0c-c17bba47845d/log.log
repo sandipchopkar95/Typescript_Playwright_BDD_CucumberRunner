@@ -1,0 +1,5 @@
+info : 2025-05-15 13:51:55 : 	User navigated to the login page
+info : 2025-05-15 13:51:56 : 	User entered username
+info : 2025-05-15 13:51:56 : 	User entered password
+info : 2025-05-15 13:51:56 : 	User clicked login button
+info : 2025-05-15 13:51:56 : 	User received an error message: Username is required
