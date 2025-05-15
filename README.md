@@ -5,6 +5,8 @@
 
 This repository contains end-to-end (E2E) tests using **Playwright**, **Cucumber**, and **TypeScript**. It follows the Behavior-Driven Development (BDD) approach using Gherkin syntax for writing human-readable test cases.
 
+**The latest run report can be seen at the url attached in about section**
+
 ---
 
 ## Features
